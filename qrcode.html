@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator - Program Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="qrcode.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>🎓 Program Hub</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="scholarships.html">Scholarships</a></li>
+                    <li><a href="clubs.html">Clubs & Societies</a></li>
+                    <li><a href="mentorship.html">Mentorship</a></li>
+                    <li><a href="qrcode.html" class="active">QR Generator</a></li>
+                </ul>
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>🔲 QR Code Generator</h1>
+                <p>Turn any link into a styled, shareable QR code</p>
+            </div>
+        </section>
+
+        <section class="content qr-section">
+            <div class="container">
+                <div class="qr-layout">
+
+                    <!-- Left: Controls -->
+                    <div class="qr-controls">
+
+                        <!-- URL Input -->
+                        <div class="qr-group">
+                            <label for="qr-url">Web Link (URL)</label>
+                            <input type="url" id="qr-url" placeholder="https://example.com" value="https://example.com">
+                        </div>
+
+                        <!-- Colors -->
+                        <div class="qr-group">
+                            <label>Colors</label>
+                            <div class="color-row">
+                                <div class="color-item">
+                                    <label for="qr-fg">Foreground</label>
+                                    <input type="color" id="qr-fg" value="#000000">
+                                </div>
+                                <div class="color-item">
+                                    <label for="qr-bg">Background</label>
+                                    <input type="color" id="qr-bg" value="#ffffff">
+                                </div>
+                                <div class="color-item">
+                                    <label for="qr-dot-color">Dot Color</label>
+                                    <input type="color" id="qr-dot-color" value="#000000">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dot Style -->
+                        <div class="qr-group">
+                            <label for="qr-dot-style">Dot Shape</label>
+                            <select id="qr-dot-style">
+                                <option value="square">Square</option>
+                                <option value="rounded" selected>Rounded</option>
+                                <option value="dots">Dots (Circles)</option>
+                                <option value="classy">Classy</option>
+                                <option value="classy-rounded">Classy Rounded</option>
+                                <option value="extra-rounded">Extra Rounded</option>
+                            </select>
+                        </div>
+
+                        <!-- Corner Square Style -->
+                        <div class="qr-group">
+                            <label for="qr-corner-style">Corner Square Shape</label>
+                            <select id="qr-corner-style">
+                                <option value="square" selected>Square</option>
+                                <option value="extra-rounded">Rounded</option>
+                                <option value="dot">Dot</option>
+                            </select>
+                        </div>
+
+                        <!-- Corner Dot Style -->
+                        <div class="qr-group">
+                            <label for="qr-corner-dot-style">Corner Dot Shape</label>
+                            <select id="qr-corner-dot-style">
+                                <option value="square" selected>Square</option>
+                                <option value="dot">Dot</option>
+                            </select>
+                        </div>
+
+                        <!-- QR Size -->
+                        <div class="qr-group">
+                            <label for="qr-size">Size: <span id="qr-size-value">300</span>px</label>
+                            <input type="range" id="qr-size" min="150" max="600" value="300" step="10">
+                        </div>
+
+                        <!-- Error Correction -->
+                        <div class="qr-group">
+                            <label for="qr-ecc">Error Correction</label>
+                            <select id="qr-ecc">
+                                <option value="L">Low (7%) – smaller QR</option>
+                                <option value="M" selected>Medium (15%)</option>
+                                <option value="Q">Quartile (25%)</option>
+                                <option value="H">High (30%) – best for logos</option>
+                            </select>
+                        </div>
+
+                        <!-- Logo / Overlay Image -->
+                        <div class="qr-group">
+                            <label for="qr-logo">Logo / Overlay Image</label>
+                            <input type="file" id="qr-logo" accept="image/*">
+                            <div class="logo-options" id="logo-options" style="display:none;">
+                                <label for="qr-logo-size">Logo Size: <span id="qr-logo-size-value">20</span>%</label>
+                                <input type="range" id="qr-logo-size" min="5" max="40" value="20" step="1">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="qr-logo-hide-bg" checked>
+                                    Hide background behind logo
+                                </label>
+                            </div>
+                            <button class="btn btn-secondary btn-sm" id="qr-logo-clear" style="display:none; margin-top:0.5rem;">✕ Remove Logo</button>
+                        </div>
+
+                        <!-- Margin -->
+                        <div class="qr-group">
+                            <label for="qr-margin">Margin: <span id="qr-margin-value">10</span>px</label>
+                            <input type="range" id="qr-margin" min="0" max="50" value="10" step="5">
+                        </div>
+
+                        <!-- Generate Button -->
+                        <button class="btn btn-generate" id="qr-generate">Generate QR Code</button>
+                    </div>
+
+                    <!-- Right: Preview + Download -->
+                    <div class="qr-preview-area">
+                        <div class="qr-preview-box">
+                            <div id="qr-canvas-container"></div>
+                            <p class="qr-hint" id="qr-hint">Enter a URL and click Generate</p>
+                        </div>
+                        <div class="qr-download-row" id="qr-download-row" style="display:none;">
+                            <button class="btn" id="qr-download-png">⬇ Download PNG</button>
+                            <button class="btn btn-secondary" id="qr-download-svg">⬇ Download SVG</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Program Hub - Demonstration Project. All data is fictional.</p>
+            <p>Not affiliated with any real educational institution.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <!-- qr-code-styling library -->
+    <script src="https://unpkg.com/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js"></script>
+    <script src="qrcode-page.js"></script>
+</body>
+</html>

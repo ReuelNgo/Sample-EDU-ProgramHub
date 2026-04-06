@@ -1,0 +1,243 @@
+/* ===================================================
+   QR Code Generator Page Styles
+   =================================================== */
+
+/* Layout */
+.qr-section {
+    background-color: var(--color-bg-light);
+    padding: 3rem 0 4rem;
+}
+
+.qr-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+/* Controls Panel */
+.qr-controls {
+    background: var(--color-white);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.qr-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.qr-group > label {
+    font-weight: 600;
+    color: var(--color-dark);
+    font-size: 0.9rem;
+}
+
+.qr-group input[type="url"],
+.qr-group select {
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: var(--color-text);
+    background: var(--color-white);
+    transition: border-color 0.2s;
+    width: 100%;
+}
+
+.qr-group input[type="url"]:focus,
+.qr-group select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+.qr-group input[type="range"] {
+    width: 100%;
+    accent-color: var(--color-primary);
+}
+
+.qr-group input[type="file"] {
+    font-size: 0.9rem;
+    color: var(--color-text);
+}
+
+/* Color Row */
+.color-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.color-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.color-item label {
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+}
+
+.color-item input[type="color"] {
+    width: 44px;
+    height: 44px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 2px;
+    background: none;
+}
+
+/* Logo sub-options */
+.logo-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    background: var(--color-bg-light);
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.logo-options label {
+    font-size: 0.85rem;
+    color: var(--color-dark);
+    font-weight: 600;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--color-text);
+    cursor: pointer;
+    font-weight: 400 !important;
+}
+
+.checkbox-label input[type="checkbox"] {
+    accent-color: var(--color-primary);
+    width: 16px;
+    height: 16px;
+}
+
+/* Generate button */
+.btn-generate {
+    margin-top: 0.5rem;
+    padding: 0.85rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: var(--color-primary);
+    color: white;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-generate:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-1px);
+}
+
+.btn-generate:active {
+    transform: translateY(0);
+}
+
+.btn-sm {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+/* Preview Area */
+.qr-preview-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.qr-preview-box {
+    background: var(--color-white);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+    min-width: 320px;
+    width: 100%;
+}
+
+#qr-canvas-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#qr-canvas-container canvas,
+#qr-canvas-container svg {
+    border-radius: 8px;
+    max-width: 100%;
+    height: auto;
+}
+
+.qr-hint {
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+/* Download row */
+.qr-download-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .qr-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .qr-preview-area {
+        order: -1;
+    }
+
+    .qr-preview-box {
+        min-height: 260px;
+        min-width: unset;
+    }
+}
+
+@media (max-width: 480px) {
+    .qr-controls {
+        padding: 1.25rem;
+    }
+
+    .color-row {
+        gap: 1rem;
+    }
+
+    .qr-download-row .btn {
+        width: 100%;
+        text-align: center;
+    }
+}

@@ -1,6 +1,6 @@
 # Sample-EDU-ProgramHub
 
-[Link to site]([https://reuelngo.github.io/Sample-EDU-ProgramHub/). 
+[Link to site](https://reuelngo.github.io/Sample-EDU-ProgramHub/index.html)
 
 ## ⚠️ IMPORTANT DISCLAIMER
 
